@@ -1,6 +1,6 @@
 package app
 
-import "enube.visualstudio.com/enube-bs-cloudsolv-ssa/db"
+import "github.com/Nick212/go-crm-espo/db"
 
 // App contains configurations for application.
 type App struct {
