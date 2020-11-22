@@ -1,6 +1,7 @@
 /configs/*.yaml
 /configs/*.crt
 /configs/*.key
+/vscode/*.json
 /configs/*.config
 /.vscode/settings.json
 /web/assets/js/node_modules/
