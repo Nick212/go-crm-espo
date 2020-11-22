@@ -7,11 +7,13 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/Nick212/go-crm-espo/entity"
 )
 
 // CRMHandlerGetService make request for CRM.
-func (a *App) CRMHandlerGetService(resource string, params string) ([]byte, error) {
-	url := a.Config.HOST_CRM + resource + "/" + params
+func (a *App) CRMHandlerGetService(resource entity.CRMEntity, params string) ([]byte, error) {
+	url := fmt.Sprintf("%v%v%v%v", a.Config.HOST_CRM, resource, "/", params)
 	method := "GET"
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, nil)
@@ -31,8 +33,8 @@ func (a *App) CRMHandlerGetService(resource string, params string) ([]byte, erro
 	return body, err
 }
 
-func (a *App) CRMHandlerPutService(resource string, payload []byte) ([]byte, error) {
-	url := a.Config.HOST_CRM + resource
+func (a *App) CRMHandlerPutService(resource entity.CRMEntity, payload []byte) ([]byte, error) {
+	url := fmt.Sprintf("%v%v", a.Config.HOST_CRM, resource)
 	method := "PUT"
 
 	fmt.Println(url)
@@ -61,8 +63,8 @@ func (a *App) CRMHandlerPutService(resource string, payload []byte) ([]byte, err
 	return body, err
 }
 
-func (a *App) CRMHandlerPostService(resource string, payload []byte) ([]byte, error) {
-	url := a.Config.HOST_CRM + resource
+func (a *App) CRMHandlerPostService(resource entity.CRMEntity, payload []byte) ([]byte, error) {
+	url := fmt.Sprintf("%v%v", a.Config.HOST_CRM, resource)
 	method := "POST"
 
 	// fmt.Println(string(payload))
@@ -89,9 +91,8 @@ func (a *App) CRMHandlerPostService(resource string, payload []byte) ([]byte, er
 }
 
 // CRMHandlerDeleteService delete request in the CRM API
-func (a *App) CRMHandlerDeleteService(ctx *Context, resource, params string) ([]byte, error) {
-
-	url := a.Config.HOST_CRM + resource + params
+func (a *App) CRMHandlerDeleteService(ctx *Context, resource entity.CRMEntity, params string) ([]byte, error) {
+	url := fmt.Sprintf("%v%v", a.Config.HOST_CRM, resource)
 	method := "DELETE"
 
 	client := &http.Client{}

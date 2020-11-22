@@ -9,14 +9,16 @@ import (
 
 // Execute the application.
 func Execute() {
+	// log := app.GlobalLogger()
 	if err := rootCmd.Execute(); err != nil {
 		logrus.Fatal(err)
 	}
 }
 
 var rootCmd = &cobra.Command{
-	Short: "ESPO CRM Ecosystem",
+	Short: "EspoCRM Ecosystem",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		// log := app.GlobalLogger()
 		logrus.Info("Version " + viper.GetString("version"))
 	},
 }
